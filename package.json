@@ -1,5 +1,14 @@
 {
   "dependencies": {
     "discord.js": "^14.15.3"
-  }
+  },
+  "name": "socoordi",
+  "version": "0.0.1",
+  "description": "So Coordinat Bot",
+  "main": "account.js",
+  "scripts": {
+    "test": "node account.js"
+  },
+  "author": "Akira",
+  "license": "MIT"
 }
