@@ -23,9 +23,7 @@ npm i discord.js
 - ``node .`` ve ya ``node account.js`` ile dosyasını çalıştırın.
 - Yukarıdakileri yapmak istemezsenizde ``baslat.bat`` ı çalıştırın.
 
-4. 
-
-data.json dosyasına elleşmeyin, otomatik kayıt yapıyor, o dosyaya birşey yaparsanız botu bozarsınız.
+4. data.json dosyasına elleşmeyin, otomatik kayıt yapıyor, o dosyaya birşey yaparsanız botu bozarsınız.
 
 # Kullanım
 ``/cordi`` yazarak aradığınız coordinatı bulabilirsiniz. 
