@@ -26,15 +26,15 @@ npm i discord.js
 4. data.json dosyasına elleşmeyin, otomatik kayıt yapıyor, o dosyaya birşey yaparsanız botu bozarsınız.
 
 # Kullanım
-``/cordi`` yazarak aradığınız coordinatı bulabilirsiniz. 
-``/dataekle`` yazarak hesap dataları ekleyebilirsiniz.
-``/datagüncelle`` yazarak hesapların bilgilerini güncelleyebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
-``/datasil`` yazarak hesapların bilgilerini silebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
-``/hesaplar`` yazarak tüm hesaplara erişebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
-``/rolayarla`` yazarak owner ya da mod rolü ayarlayabilirsiniz. (sadece bot sahibi kullanabilir.)
-``/rolgüncelle`` yazarak rol id lerini güncelleyebilirsiniz.  (sadece bot sahibi kullanabilir.)
-``/rolsil`` yazarak rol id lerini silebilirsiniz. (sadece bot sahibi kullanabilir.)
-``/şifre`` yazarak hesapların şifresine erişebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
+-``/cordi`` yazarak aradığınız coordinatı bulabilirsiniz. 
+-``/dataekle`` yazarak hesap dataları ekleyebilirsiniz.
+-``/datagüncelle`` yazarak hesapların bilgilerini güncelleyebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
+-``/datasil`` yazarak hesapların bilgilerini silebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
+-``/hesaplar`` yazarak tüm hesaplara erişebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
+-``/rolayarla`` yazarak owner ya da mod rolü ayarlayabilirsiniz. (sadece bot sahibi kullanabilir.)
+-``/rolgüncelle`` yazarak rol id lerini güncelleyebilirsiniz.  (sadece bot sahibi kullanabilir.)
+-``/rolsil`` yazarak rol id lerini silebilirsiniz. (sadece bot sahibi kullanabilir.)
+-``/şifre`` yazarak hesapların şifresine erişebilirsiniz. (sadece bot sahibi ve owner kullanabilir.)
 
 # Destek
 Herhangi bir sorunla karşılaşırsanız veya yardım almak isterseniz, [benimle iletişime](https://discord.com/users/337545269845688361) geçebilirsiniz.
