@@ -1,21 +1,24 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
+const { checkModPermission } = require('../utils/permissionCheck');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('cordi')
         .setDescription('En yakın koordinatı bulur')
         .addStringOption(option => option.setName('dünya').setDescription('Dünya adı').setRequired(true))
-        .addStringOption(option => option.setName('coordinat').setDescription('X Y Z koordinatları').setRequired(true)),
+        .addIntegerOption(option => option.setName('x').setDescription('X koordinatı').setRequired(true))
+        .addIntegerOption(option => option.setName('y').setDescription('Y koordinatı').setRequired(true))
+        .addIntegerOption(option => option.setName('z').setDescription('Z koordinatı').setRequired(true)),
     async execute(interaction) {
-        const dünya = interaction.options.getString('dünya');
-        const coordinat = interaction.options.getString('coordinat').split(' ').map(Number);
-
-        if (coordinat.length !== 3 || coordinat.some(isNaN)) {
-            return interaction.reply('Geçersiz koordinat formatı. Lütfen "X Y Z" şeklinde girin.');
+        if (!checkModPermission(interaction)) {
+            return interaction.reply({ content: 'Bu komutu kullanma yetkiniz yok. Sadece mod veya owner rolüne sahip kullanıcılar bu komutu kullanabilir.', ephemeral: true });
         }
 
-        const [x, y, z] = coordinat;
+        const dünya = interaction.options.getString('dünya');
+        const x = interaction.options.getInteger('x');
+        const y = interaction.options.getInteger('y');
+        const z = interaction.options.getInteger('z');
 
         let data = [];
         try {
