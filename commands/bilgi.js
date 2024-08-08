@@ -4,8 +4,8 @@ const { checkOwnerPermission } = require('../utils/permissionCheck');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('şifre')
-        .setDescription('Hesap şifresini gösterir')
+        .setName('bilgi')
+        .setDescription('Hesap bilgilerini gösterir')
         .addStringOption(option => option.setName('isim').setDescription('Hesap ismi').setRequired(true)),
         async execute(interaction) {
             if (!checkOwnerPermission(interaction)) {
