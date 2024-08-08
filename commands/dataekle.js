@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
+const { checkModPermission } = require('../utils/permissionCheck');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,18 +9,20 @@ module.exports = {
         .addStringOption(option => option.setName('isim').setDescription('Hesap ismi').setRequired(true))
         .addStringOption(option => option.setName('şifre').setDescription('Hesap şifresi').setRequired(true))
         .addStringOption(option => option.setName('dünya').setDescription('Dünya adı').setRequired(true))
-        .addStringOption(option => option.setName('coordinat').setDescription('X Y Z koordinatları').setRequired(true)),
+        .addIntegerOption(option => option.setName('x').setDescription('X koordinatı').setRequired(true))
+        .addIntegerOption(option => option.setName('y').setDescription('Y koordinatı').setRequired(true))
+        .addIntegerOption(option => option.setName('z').setDescription('Z koordinatı').setRequired(true)),
     async execute(interaction) {
+        if (!checkModPermission(interaction)) {
+            return interaction.reply({ content: 'Bu komutu kullanma yetkiniz yok. Sadece mod veya owner rolüne sahip kullanıcılar bu komutu kullanabilir.', ephemeral: true });
+        }
+
         const isim = interaction.options.getString('isim');
         const şifre = interaction.options.getString('şifre');
         const dünya = interaction.options.getString('dünya');
-        const coordinat = interaction.options.getString('coordinat').split(' ').map(Number);
-
-        if (coordinat.length !== 3 || coordinat.some(isNaN)) {
-            return interaction.reply({ content: 'Geçersiz koordinat formatı. Lütfen "X Y Z" şeklinde girin.', ephemeral: true });
-        }
-
-        const [x, y, z] = coordinat;
+        const x = interaction.options.getInteger('x');
+        const y = interaction.options.getInteger('y');
+        const z = interaction.options.getInteger('z');
 
         let data = [];
         try {
@@ -28,7 +31,6 @@ module.exports = {
             console.error('Dosya okuma hatası:', error);
         }
 
-        // Aynı isimli hesap kontrolü
         if (data.some(item => item.isim === isim)) {
             return interaction.reply({ content: `"${isim}" isimli hesap zaten mevcut. Lütfen farklı bir isim kullanın.`, ephemeral: true });
         }
@@ -46,8 +48,8 @@ module.exports = {
                 { name: 'Dünya', value: dünya, inline: true },
                 { name: 'Koordinatlar', value: `X: ${x}, Y: ${y}, Z: ${z}`, inline: true }
             )
-            .setTimestamp()
+            .setTimestamp();
 
-        await interaction.reply({ embeds: [embed], ephemeral: false });
+        await interaction.reply({ embeds: [embed]});
     },
 };
