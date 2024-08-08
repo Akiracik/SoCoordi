@@ -9,7 +9,9 @@ module.exports = {
         .addStringOption(option => option.setName('isim').setDescription('Güncellenecek hesap ismi').setRequired(true))
         .addStringOption(option => option.setName('şifre').setDescription('Yeni şifre (opsiyonel)'))
         .addStringOption(option => option.setName('dünya').setDescription('Yeni dünya adı (opsiyonel)'))
-        .addStringOption(option => option.setName('coordinat').setDescription('Yeni X Y Z koordinatları (opsiyonel)')),
+        .addIntegerOption(option => option.setName('x').setDescription('Yeni X koordinatı (opsiyonel)'))
+        .addIntegerOption(option => option.setName('y').setDescription('Yeni Y koordinatı (opsiyonel)'))
+        .addIntegerOption(option => option.setName('z').setDescription('Yeni Z koordinatı (opsiyonel)')),
     async execute(interaction) {
         if (!checkOwnerPermission(interaction)) {
             return interaction.reply({ content: 'Bu komutu kullanma yetkiniz yok. Sadece owner rolüne sahip kullanıcılar bu komutu kullanabilir.', ephemeral: true });
@@ -18,7 +20,9 @@ module.exports = {
         const isim = interaction.options.getString('isim');
         const yeniŞifre = interaction.options.getString('şifre');
         const yeniDünya = interaction.options.getString('dünya');
-        const yeniCoordinat = interaction.options.getString('coordinat');
+        const yeniX = interaction.options.getInteger('x');
+        const yeniY = interaction.options.getInteger('y');
+        const yeniZ = interaction.options.getInteger('z');
 
         let data = [];
         try {
@@ -45,16 +49,19 @@ module.exports = {
             güncellemeler.push('Dünya');
         }
 
-        if (yeniCoordinat) {
-            const [x, y, z] = yeniCoordinat.split(' ').map(Number);
-            if (x && y && z) {
-                data[hesapIndex].x = x;
-                data[hesapIndex].y = y;
-                data[hesapIndex].z = z;
-                güncellemeler.push('Koordinatlar');
-            } else {
-                return interaction.reply({ content: 'Geçersiz koordinat formatı. Lütfen "X Y Z" şeklinde girin.', ephemeral: true });
-            }
+        if (yeniX !== null) {
+            data[hesapIndex].x = yeniX;
+            güncellemeler.push('X koordinatı');
+        }
+
+        if (yeniY !== null) {
+            data[hesapIndex].y = yeniY;
+            güncellemeler.push('Y koordinatı');
+        }
+
+        if (yeniZ !== null) {
+            data[hesapIndex].z = yeniZ;
+            güncellemeler.push('Z koordinatı');
         }
 
         if (güncellemeler.length === 0) {
